@@ -1,6 +1,7 @@
-import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
 import { DataService } from './data.service';
 import { CustomerType } from './types';
+import { CustomerDto } from './CustomerDto';
 
 @Controller('api/v1/customers')
 export class AppController {
@@ -20,5 +21,10 @@ export class AppController {
         }
 
         return customer;
+    }
+
+    @Post('create')
+    createCustomer(@Body() customer: CustomerDto) {
+        this.dataService.createCustomer(customer);
     }
 }

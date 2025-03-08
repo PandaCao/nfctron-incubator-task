@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { faker } from '@faker-js/faker';
-import { CustomerType} from './types';
+import { CustomerType } from './types';
+import { CustomerDto } from './CustomerDto';
 
 @Injectable()
 export class DataService {
@@ -23,5 +24,16 @@ export class DataService {
 
     getCustomerByUuid(uuid: string): CustomerType | undefined {
         return this.customers.find((customer) => customer.id === uuid);
+    }
+
+    //todo Add to readme we should add some checking if user exists
+    createCustomer(customer: CustomerDto) {
+        this.customers.push({
+            id: faker.string.uuid(),
+            firstName: customer.firstName,
+            lastName: customer.lastName,
+            email: customer.email,
+            phone: customer.phone
+        });
     }
 }
