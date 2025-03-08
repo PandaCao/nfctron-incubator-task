@@ -41,8 +41,9 @@ Testing the application
 ```
 
 ## REST API
+📌 **Swagger Documentation:** Open your browser and go to [http://localhost:8080/api](http://localhost:8080/api)
 
-I personally use Postman for sending requests but below are some request examples:
+**I personally use Postman for sending requests but below are some request examples:**
 
 ### Some examples of requests
 
@@ -84,3 +85,11 @@ I personally use Postman for sending requests but below are some request example
 | `GET`   | `/api/v1/customers/{uuid}`        | Retrieve the customer by uuid. |
 | `POST`  | `/api/v1/customers/create`        | Create new customer            |
 | `PATCH` | `/api/v1/customers/update/{uuid}` | Update customer by uuid.       |
+
+
+# My opinions
+
+**Before this task I've never worked with NestJS, only some basic FEs in React with Typescript. The task wasn't very challenging as there was no database.
+In Java, I am used to Hibernate ORM, so I would definitely use an ORM. The most challenging part of this task was mocking, as it is different from Mockito in Java.
+Overall, I really enjoyed working on this project. NestJS shares some similarities to Spring Boot, such as the use of decorators 
+(similar to annotations in Java), Inversion of Control (IoC) and Dependency Injection, which made the learning curve smoother.**
