@@ -1,12 +1,24 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
+import { DataService } from './data.service';
+import { CustomerType } from './types';
 
-@Controller()
+@Controller('api/v1/customers')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor(private readonly dataService: DataService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+    @Get()
+    getAllCustomers() {
+        return this.dataService.getCustomers();
+    }
+
+    @Get(':uuid')
+    getCustomerById(@Param('uuid') uuid: string): CustomerType {
+        const customer = this.dataService.getCustomerByUuid(uuid);
+
+        if (!customer) {
+            throw new NotFoundException('Customer not found');
+        }
+
+        return customer;
+    }
 }
