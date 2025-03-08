@@ -1,7 +1,8 @@
 import { Body, Controller, Get, NotFoundException, Param, Patch, Post } from '@nestjs/common';
 import { DataService } from './data.service';
 import { CustomerType } from './types';
-import { CustomerDto } from './CustomerDto';
+import { CreateCustomerDto } from './dto/CreateCustomerDto';
+import { UpdateCustomerDto } from './dto/UpdateCustomerDto';
 
 @Controller('api/v1/customers')
 export class AppController {
@@ -24,12 +25,12 @@ export class AppController {
     }
 
     @Post('create')
-    createCustomer(@Body() customer: CustomerDto): void {
+    createCustomer(@Body() customer: CreateCustomerDto): void {
         this.dataService.createCustomer(customer);
     }
 
     @Patch('update/:uuid')
-    updateCustomerById(@Param('uuid') uuid: string, @Body() customerDto: CustomerDto): CustomerType {
+    updateCustomerById(@Param('uuid') uuid: string, @Body() customerDto: UpdateCustomerDto): CustomerType {
         const customer: CustomerType | undefined = this.dataService.updateCustomerByUuid(
             uuid,
             customerDto,
