@@ -36,4 +36,17 @@ export class DataService {
             phone: customer.phone
         });
     }
+
+    updateCustomerByUuid(uuid: string, updatedCustomer: CustomerDto): CustomerType | undefined {
+        const index = this.customers.findIndex((customer) => customer.id === uuid);
+
+        if (index === -1) {
+            return undefined;
+        }
+
+        this.customers[index] = { ...this.customers[index], ...updatedCustomer };
+
+        return this.customers[index];
+    }
+
 }
