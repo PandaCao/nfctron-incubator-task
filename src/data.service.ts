@@ -27,7 +27,6 @@ export class DataService {
         return this.customers.find((customer: CustomerType): boolean => customer.id === uuid);
     }
 
-    //todo Add to readme we should add some checking if user exists
     createCustomer(customer: CreateCustomerDto): void {
         this.customers.push({
             id: faker.string.uuid(),
