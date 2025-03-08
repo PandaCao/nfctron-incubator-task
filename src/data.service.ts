@@ -5,9 +5,9 @@ import { CustomerDto } from './CustomerDto';
 
 @Injectable()
 export class DataService {
-    private customers: CustomerType[] = Array.from({ length: 5 }, () => {
-        const firstName = faker.person.firstName();
-        const lastName = faker.person.lastName();
+    private customers: CustomerType[] = Array.from({ length: 5 }, (): CustomerType => {
+        const firstName: string = faker.person.firstName();
+        const lastName: string = faker.person.lastName();
 
         return {
             id: faker.string.uuid(),
@@ -23,11 +23,11 @@ export class DataService {
     }
 
     getCustomerByUuid(uuid: string): CustomerType | undefined {
-        return this.customers.find((customer) => customer.id === uuid);
+        return this.customers.find((customer: CustomerType): boolean => customer.id === uuid);
     }
 
     //todo Add to readme we should add some checking if user exists
-    createCustomer(customer: CustomerDto) {
+    createCustomer(customer: CustomerDto): void {
         this.customers.push({
             id: faker.string.uuid(),
             firstName: customer.firstName,
@@ -38,7 +38,7 @@ export class DataService {
     }
 
     updateCustomerByUuid(uuid: string, updatedCustomer: CustomerDto): CustomerType | undefined {
-        const index = this.customers.findIndex((customer) => customer.id === uuid);
+        const index: number = this.customers.findIndex((customer: CustomerType): boolean => customer.id === uuid);
 
         if (index === -1) {
             return undefined;
